@@ -251,11 +251,11 @@ def runner() -> None:
 def owoexp() -> None:
 	if client.em['text'] and not client.stopped:
 		try:
-			response = get("https://quote-garden.herokuapp.com/api/v3/quotes/random")
+			response = get("https://zenquotes.io/api/random")
 			if response.status_code == 200:
 				json_data = response.json()
-				data = json_data['data']
-				bot.sendMessage(client.channel, data[0]['quoteText'])
+				data = json_data[0]
+				bot.sendMessage(client.channel, data['q'])
 				client.totaltext += 1
 				sleep(random.randint(1,6))
 		except:
